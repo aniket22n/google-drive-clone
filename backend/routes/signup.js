@@ -9,9 +9,16 @@ async function signup(req, res) {
   // connecting to database
   await connectDB();
 
-  // save new user to database and returns jwt token
   let { email, password } = req.body;
 
+  // checking if an account with email already exits
+  let isUser = User.findOne({email})
+  
+  if (isUser) { 
+    return res.status(409).json({message :"Account already exits"});
+  }
+
+  // save new user to database and returns jwt token
   let newUser = new User({
     email,
     password,
