@@ -5,7 +5,7 @@ require("dotenv").config();
 const secretKey = process.env.SECRET_KEY;
 
 async function login(req, res){
-  let { email, password } = req.headers;
+  let { email, password } = req.body;
 
   // check if user login credentials are valid
   let isUser = await User.findOne({email, password});
