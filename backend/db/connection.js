@@ -14,4 +14,4 @@ function connectDB() {
     
 }
 
-export { connectDB}
+module.exports = { connectDB }
