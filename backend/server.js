@@ -1,15 +1,14 @@
-const express = require('express');
-const signup = require('./routes/signup');
-const login = require('./routes/login');
-const User = require('./db/models/user');
-const { connectDB } = require('./db/connection');
-
+const express = require("express");
+// const signup = require("./routes/signup");
+// const login = require("./routes/login");
+// const User = require("./db/models/user");
+const { connectDB } = require("./db/connection");
+const userRouter = require("./routes/loginRouter");
 const app = express();
 app.use(express.json());
 
 connectDB();
 
-app.post('/user/signup', signup);
-app.post('/user/login', login);
+app.use("/user", userRouter);
 
-app.listen("3000", () => console.log("listening on port 3000..."))
+app.listen("3000", () => console.log("listening on port 3000..."));
